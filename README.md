@@ -1,4 +1,4 @@
-[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://workshop-matlab.mathworks.com/open/github/v1?repo=Brenda-MW/RevUp_EAIF_AUSTIN-2025)
+[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://workshop-matlab.mathworks.com/open/github/v1?repo=Brenda-MW/RevUp-EAIF-AUSTIN-2025)
 # Rev it up: Deploy Tiny Neural Network to Boost Embedded Field-Oriented Controls of Electrical Drives with MATLAB and ST Edge AI Developer Cloud
 
 In the realm of motor electrification, integrating Edge AI with Field Oriented Control (FOC) for Permanent Magnet Synchronous Motors (PMSMs) offers a transformative opportunity to enhance speed performance, accuracy, and energy efficiency. This integration poses unique challenges due to the entrenched nature of traditional control techniques.
