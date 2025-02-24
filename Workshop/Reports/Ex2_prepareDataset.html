@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB 2024b"><title>Prepare data collected in simulation for training</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.8px; min-height: 0px; white-space: pre-wrap; color: rgb(192, 76, 11); font-family: Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: 400; text-align: left;  }
+.S1 { margin: 20px 10px 5px 4px; padding: 0px; line-height: 25px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
+.S2 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.CodeBlock { background-color: #F5F5F5; margin: 10px 15px 10px 0; display: inline-block }
+.S3 { border-left: 0.909091px solid rgb(217, 217, 217); border-right: 0.909091px solid rgb(217, 217, 217); border-top: 0.909091px solid rgb(217, 217, 217); border-bottom: 0px none rgb(33, 33, 33); border-radius: 4px 4px 0px 0px; padding: 6px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace, Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S4 { border-left: 0.909091px solid rgb(217, 217, 217); border-right: 0.909091px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 0px none rgb(33, 33, 33); border-radius: 0px; padding: 0px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace, Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.eoOutputWrapper { width: calc(90vw - 10px) !important; }
+.S5 { border-left: 0.909091px solid rgb(217, 217, 217); border-right: 0.909091px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 0.909091px solid rgb(217, 217, 217); border-radius: 0px; padding: 0px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace, Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S6 { color: rgb(33, 33, 33); padding: 10px 0px 6px 17px; background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px; overflow-x: hidden; line-height: 17.234px;  }
+/* Styling that is common to warnings and errors is in diagnosticOutput.css */.embeddedOutputsErrorElement {    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsErrorElement .diagnosticMessage-errorType {    overflow: auto;}
+.embeddedOutputsErrorElement.activeOutput .eoOutputContent {    user-select: text;    -webkit-user-select: text;}
+.embeddedOutputsErrorElement.activeOutput .eoOutputContent button {    user-select: none;    -webkit-user-select: none;}
+.embeddedOutputsErrorElement .eoOutputContent ::selection {}
+.embeddedOutputsErrorElement.inlineElement {}
+.embeddedOutputsErrorElement.rightPaneElement {}
+/* Styling that is common to warnings and errors is in diagnosticOutput.css */.embeddedOutputsWarningElement {    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsWarningElement .diagnosticMessage-warningType {    overflow: auto;}
+.embeddedOutputsWarningElement.activeOutput .eoOutputContent {    user-select: text;    -webkit-user-select: text;}
+.embeddedOutputsWarningElement .eoOutputContent ::selection {}
+.embeddedOutputsWarningElement.inlineElement {}
+.embeddedOutputsWarningElement.rightPaneElement {}
+/* Copyright 2015-2023 The MathWorks, Inc. *//* In this file, styles are not scoped to rtcContainer since they could be in the Dojo Tooltip */.diagnosticMessage-wrapper {    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;    font-size: 12px;}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType {    /*This fallback value will be used for appdesigner warnings*/    color: var(--rtc-warning-output-color, var(--mw-color-matlabWarning));}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType a {    /*This fallback value will be used for appdesigner warnings*/    color: var(--rtc-warning-output-color, var(--mw-color-matlabWarning));    text-decoration: underline;}
+.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-warningType,.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-warningType a {    color: var(--mw-color-matlabWarning) !important;}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType {    /*This fallback value will be used in appdesigner error tooltip text*/    color: var(--rtc-error-output-color, var(--mw-color-matlabErrors));}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType a {    /*This fallback value will be used in appdesigner error tooltip text*/    color: var(--rtc-error-output-color, var(--mw-color-matlabErrors));    text-decoration: underline;}
+.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-errorType,.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-errorType a {    color: var(--mw-color-matlabErrors) !important;}
+.diagnosticMessage-wrapper .diagnosticMessage-messagePart,.diagnosticMessage-wrapper .diagnosticMessage-causePart {    white-space: pre-wrap;}
+.diagnosticMessage-wrapper .diagnosticMessage-stackPart {    white-space: pre;}
+.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {    white-space: pre;    word-wrap:  initial;    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsTextElement .textElement,.embeddedOutputsVariableStringElement .textElement {    overflow: auto;}
+.embeddedOutputsTextElement.activeOutput .eoOutputContent,.embeddedOutputsVariableStringElement.activeOutput .eoOutputContent {    user-select: text;    -webkit-user-select: text;}
+/*embeddedOutputsTextElement has a different dom structure than embeddedOutputsVariableStringElement.Unlike variableString, the text output has both TEXT nodes and elements as children. Hence we needa selector for each.*/.embeddedOutputsTextElement .eoOutputContent::selection,.embeddedOutputsTextElement .eoOutputContent ::selection,.embeddedOutputsVariableStringElement .eoOutputContent ::selection {}
+.textElement,.rtcDataTipElement .textElement {    padding-top: 2px;}
+.embeddedOutputsTextElement.inlineElement,.embeddedOutputsVariableStringElement.inlineElement {}
+.inlineElement .textElement {}
+.embeddedOutputsTextElement.rightPaneElement,.embeddedOutputsVariableStringElement.rightPaneElement {    min-height: 16px;}
+.rightPaneElement .textElement {    padding-top: 2px;    padding-left: 9px;}
+.S7 { border-left: 0.909091px solid rgb(217, 217, 217); border-right: 0.909091px solid rgb(217, 217, 217); border-top: 0.909091px solid rgb(217, 217, 217); border-bottom: 0px none rgb(33, 33, 33); border-radius: 0px; padding: 6px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace, Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S8 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 25px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
+.S9 { border-left: 0.909091px solid rgb(217, 217, 217); border-right: 0.909091px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 0.909091px solid rgb(217, 217, 217); border-radius: 0px 0px 4px 4px; padding: 0px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace, Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S10 { margin: 10px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }</style></head><body><div class = rtcContent><h1  class = 'S0'><span>Prepare data collected in simulation for training</span></h1><h2  class = 'S1'><span>Load selected signal logging from simulation</span></h2><div  class = 'S2'><span>We saved the most relevant data from the simulation run of the model to collect signal values of </span><span style=' font-weight: bold;'>Reference Speed</span><span>, </span><span style=' font-weight: bold;'>Measured Speed</span><span>, </span><span style=' font-weight: bold;'>Reference Current</span><span> and </span><span style=' font-weight: bold;'>Measured Errors</span><span>. </span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre"><span >load(</span><span style="color: #a709f5;">"smallDataTable.mat"</span><span >); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% change the display</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >format </span><span style="color: #a709f5;">long</span><span >; </span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre"><span >head(Table_data); </span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper disableDefaultGestureHandling embeddedOutputsTextElement" uid="D3C1383E" prevent-scroll="true" data-testid="output_0" tabindex="-1" style="width: 1307.01px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;"><div class=" textElement eoOutputContent" tabindex="-1" data-previous-available-width="1270" data-previous-scroll-height="164" data-hashorizontaloverflow="false" role="article" aria-roledescription="Use Browse Mode to explore " aria-description="text output " style="max-height: 261px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Measured_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Iq</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Error_measured</strong>
+    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">_______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">____________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>
+
+         0.03                0                     0         -0.00766  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  
+         0.03                0            0.01250483      0.004844832  </div></div></div></div><div class="inlineWrapper"><div  class = 'S7'><span style="white-space: pre"><span style="color: #008013;">% Remove duplicates</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >Table_unique = unique(Table_data);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% Number of samples</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >numSamples = size(Table_unique, 1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% View the shuffled data in the table</span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre"><span >head(Table_unique); </span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper disableDefaultGestureHandling embeddedOutputsTextElement" uid="1B45B804" prevent-scroll="true" data-testid="output_1" tabindex="-1" style="width: 1307.01px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;"><div class=" textElement eoOutputContent" tabindex="-1" data-previous-available-width="1270" data-previous-scroll-height="164" data-hashorizontaloverflow="false" role="article" aria-roledescription="Use Browse Mode to explore " aria-description="text output " style="max-height: 261px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Measured_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Iq</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Error_measured</strong>
+    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">_______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">____________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>
+
+            0.03                  0                0          -0.00766 
+            0.03                  0       0.01250483       0.004844832 
+           0.051        0.009139664       0.01250483       0.004844832 
+           0.051        0.009139664       0.01744855       0.009788549 
+      0.06569999         0.04651625      0.007996316      0.0003363159 
+      0.06569999         0.04651625       0.01744855       0.009788549 
+      0.07598999         0.04699595      0.007996316      0.0003363159 
+      0.07598999         0.04699595       0.01208552       0.004425519 </div></div></div></div></div><h2  class = 'S8'><span>Split the data into training, validating and testing portion</span></h2><div  class = 'S2'><span>With the existing table. We create a random nonstratified partition for holdout validation on </span><span style=' font-family: monospace;'>n</span><span> observations. This partition divides the observations into a training set and a test, or holdout, set.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre"><span >n = length(Table_unique.Error_measured);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% hpartition = cvpartition(n,'Holdout',0.3); % partition with holdout</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >hpartition = cvpartition(n,</span><span style="color: #a709f5;">'KFold'</span><span >,3);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxTrain = training(hpartition, 1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >tblTrain = Table_unique(idxTrain,:);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxValidate = test(hpartition, 2); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >tblValidate = Table_unique(idxValidate, :); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxTest = test(hpartition, 3);</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre"><span >tblTest = Table_unique(idxTest,:);</span></span></div></div></div><div  class = 'S10'><span>Save the data into variables for training and tests. </span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre"><span style="color: #008013;">% Extract input features and target output</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'>&nbsp;</div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >XTrain = tblTrain{:, 1:3};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >TTrain = tblTrain{:, 4};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'>&nbsp;</div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >XValidate = tblValidate{:, 1:3};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >TValidate = tblValidate{:, 4};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'>&nbsp;</div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >XTest = tblTest{:, 1:3};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >TTest = tblTest{:, 4};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'>&nbsp;</div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >Ds_Train = {XTrain, TTrain};</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >Ds_Validate = {XValidate, TValidate};</span></span></div></div><div class="inlineWrapper"><div  class = 'S9'><span style="white-space: pre"><span >Ds_Test = {XTest, TTest};</span></span></div></div></div><h2  class = 'S8'><span>(Optionally) Use the larger dataset with less duplicates</span></h2><div  class = 'S2'><span>Case 2 in the simulation model has fast switching reference speed, leading to varying data collected. Dataset can be constructed similarly using this dataset. </span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre"><span >load(</span><span style="color: #a709f5;">"largerDataTable.mat"</span><span >); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >Table_large = unique(Table_data);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% Number of samples</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >numS = size(Table_large, 1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #008013;">% View the shuffled data in the table</span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre"><span >head(Table_large); </span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper disableDefaultGestureHandling embeddedOutputsTextElement" uid="30E3A544" prevent-scroll="true" data-testid="output_2" tabindex="-1" style="width: 1307.01px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;"><div class=" textElement eoOutputContent" tabindex="-1" data-previous-available-width="1270" data-previous-scroll-height="164" data-hashorizontaloverflow="false" role="article" aria-roledescription="Use Browse Mode to explore " aria-description="text output " style="max-height: 261px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Measured_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Iq</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Error_measured</strong>
+    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">_______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">____________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>
+
+      0.05981445        0.002362367       0.02224099       0.2007076   
+      0.05981445        0.002362367       0.02394762       0.2026008   
+      0.05981445        0.002362367       0.02394762       0.2027871   
+      0.05981445        0.002362367       0.02394762        0.202973   
+      0.05981445        0.002362367       0.02394762       0.2031587   
+      0.05981445        0.002362367       0.02394762       0.2033441   
+      0.05981445        0.002362367       0.02394762       0.2035292   
+      0.05981445        0.002362367       0.02394762       0.2037141   </div></div></div></div></div><h2  class = 'S8'><span>(Optionally) Split this dataset to train, validate and test the models</span></h2><div  class = 'S2'><span>Now we can partition for multiple times. </span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S3'><span style="white-space: pre"><span >nLarge = length(Table_large.Error_measured);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >hp = cvpartition(nLarge,</span><span style="color: #a709f5;">'KFold'</span><span >,3); </span><span style="color: #008013;">% Nonstratified partition</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxTrain = training(hp, 1);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >tblTrain = Table_large(idxTrain,:);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxValidate = test(hp, 2); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >tblValidate = Table_large(idxValidate, :); </span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >idxNew = test(hp, 3);</span></span></div></div><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >tblNew = Table_large(idxNew,:);</span></span></div></div><div class="inlineWrapper outputs"><div  class = 'S5'><span style="white-space: pre"><span >head(tblNew); </span></span></div><div  class = 'S6'><div class="inlineElement eoOutputWrapper disableDefaultGestureHandling embeddedOutputsTextElement" uid="A29DECF9" prevent-scroll="true" data-testid="output_3" tabindex="-1" style="width: 1307.01px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;"><div class=" textElement eoOutputContent" tabindex="-1" data-previous-available-width="1270" data-previous-scroll-height="164" data-hashorizontaloverflow="false" role="article" aria-roledescription="Use Browse Mode to explore " aria-description="text output " style="max-height: 261px; white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Measured_Speed</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Reference_Iq</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">Error_measured</strong>
+    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">_______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">____________</strong>    <strong style="white-space: pre; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;">______________</strong>
+
+      0.05981445        0.002362367       0.02224099       0.2007076   
+      0.05981445        0.002362367       0.02394762        0.202973   
+      0.05981445        0.002362367       0.02394762       0.2040829   
+      0.05981445        0.002362367       0.02394762        0.204634   
+      0.05981445        0.002362367       0.02394762           0.205   
+      0.05981445        0.002362367       0.02394762       0.2055469   
+      0.05981445        0.002362367       0.02394762       0.2068132   
+      0.05981445        0.002362367       0.02394762        0.206993   </div></div></div></div></div><div  class = 'S10'></div>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+%% Prepare data collected in simulation for training
+%% Load selected signal logging from simulation
+% We saved the most relevant data from the simulation run of the model to collect 
+% signal values of *Reference Speed*, *Measured Speed*, *Reference Current* and 
+% *Measured Errors*. 
+
+load("smallDataTable.mat"); 
+% change the display
+format long; 
+head(Table_data); 
+% Remove duplicates
+Table_unique = unique(Table_data);
+% Number of samples
+numSamples = size(Table_unique, 1);
+% View the shuffled data in the table
+head(Table_unique); 
+%% Split the data into training, validating and testing portion
+% With the existing table. We create a random nonstratified partition for holdout 
+% validation on |n| observations. This partition divides the observations into 
+% a training set and a test, or holdout, set.
+
+n = length(Table_unique.Error_measured);
+% hpartition = cvpartition(n,'Holdout',0.3); % partition with holdout
+hpartition = cvpartition(n,'KFold',3);
+idxTrain = training(hpartition, 1);
+tblTrain = Table_unique(idxTrain,:);
+idxValidate = test(hpartition, 2); 
+tblValidate = Table_unique(idxValidate, :); 
+idxTest = test(hpartition, 3);
+tblTest = Table_unique(idxTest,:);
+%% 
+% Save the data into variables for training and tests. 
+
+% Extract input features and target output
+
+XTrain = tblTrain{:, 1:3};
+TTrain = tblTrain{:, 4};
+
+XValidate = tblValidate{:, 1:3};
+TValidate = tblValidate{:, 4};
+
+XTest = tblTest{:, 1:3};
+TTest = tblTest{:, 4};
+
+Ds_Train = {XTrain, TTrain};
+Ds_Validate = {XValidate, TValidate};
+Ds_Test = {XTest, TTest};
+%% (Optionally) Use the larger dataset with less duplicates
+% Case 2 in the simulation model has fast switching reference speed, leading 
+% to varying data collected. Dataset can be constructed similarly using this dataset. 
+
+load("largerDataTable.mat"); 
+Table_large = unique(Table_data);
+% Number of samples
+numS = size(Table_large, 1);
+% View the shuffled data in the table
+head(Table_large); 
+%% (Optionally) Split this dataset to train, validate and test the models
+% Now we can partition for multiple times. 
+
+nLarge = length(Table_large.Error_measured);
+hp = cvpartition(nLarge,'KFold',3); % Nonstratified partition
+idxTrain = training(hp, 1);
+tblTrain = Table_large(idxTrain,:);
+idxValidate = test(hp, 2); 
+tblValidate = Table_large(idxValidate, :); 
+idxNew = test(hp, 3);
+tblNew = Table_large(idxNew,:);
+head(tblNew); 
+%% 
+%
+##### SOURCE END #####
+-->
+</div></body></html>
